@@ -26,7 +26,7 @@ public class RequestTest {
 
     @Test
     public void verifyPostMethod() {
-        Post post = new Post().title("test").body("test").userId(100);
+        Post post = new Post().title("test title").body("test body").userId(100);
 
         apiService.sendPostRequest(post)
                 .shouldHave(Conditions.statusCode(201))
@@ -35,22 +35,22 @@ public class RequestTest {
 
     @Test
     public void verifyPutMethod() {
-        Post post = new Post().title("test");
+        Post post = new Post().title("test title");
 
         apiService.sendPutRequest(post, 100)
                 .shouldHave(Conditions.statusCode(200))
                 .shouldHave(Conditions.bodyField("id", is(100)))
-                .shouldHave(Conditions.bodyField("title", is("test")));
+                .shouldHave(Conditions.bodyField("title", is("test title")));
     }
 
     @Test
     public void verifyPatchMethod() {
-        Post post = new Post().body("test");
+        Post post = new Post().body("test body");
 
         apiService.sendPatchRequest(post, 100)
                 .shouldHave(Conditions.statusCode(200))
                 .shouldHave(Conditions.bodyField("id", is(100)))
-                .shouldHave(Conditions.bodyField("body", is("test")));
+                .shouldHave(Conditions.bodyField("body", is("test body")));
     }
 
     @Test

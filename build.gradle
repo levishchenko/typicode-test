@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'io.franzbecker.gradle-lombok' version '1.8'
+}
+
+group 'typicode'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    restAssuredVersion = '4.3.2'
+    testNgVersion = '7.3.0'
+}
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: testNgVersion
+    compile group: 'io.rest-assured', name: 'rest-assured', version: restAssuredVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
+}
+
+test {
+    useTestNG()
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+
+    test.outputs.upToDateWhen {false}
+}
